@@ -30,12 +30,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& NoClip::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "No-Clip", "Player", true };
+        static const FeatureGUIInfo info{ "", "Player", false };
         return info;
     }
 
     void NoClip::DrawMain()
     {
+		if (ImGui::CollapsingHeader("No-Clip", true))
+		{
 		ConfigWidget("Enabled", f_Enabled, "Enables no-clip (fast speed + no collision).\n" \
             "To move, use WASD, Space (go up), and Shift (go down).");
 
@@ -59,6 +61,7 @@ namespace cheat::feature
 		
 		ConfigWidget("Velocity mode", f_VelocityMode,"Use velocity instead of position to move.");
 		ConfigWidget("Freeflight mode", f_FreeflightMode,"Don't remove collisions");
+		}
 		}
     }
 

@@ -28,12 +28,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& KillAura::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Kill Aura", "World", true };
+        static const FeatureGUIInfo info{ "", "Combat", false };
         return info;
     }
 
     void KillAura::DrawMain()
     {
+		if (ImGui::CollapsingHeader("Kill Aura", true))
+		{
 		ConfigWidget("Enable Kill Aura", f_Enabled, "Enables kill aura. Need to choose a mode to work.");
 		ImGui::SameLine();
 		ImGui::TextColored(ImColor(255, 165, 0, 255), "Choose any or both modes below.");
@@ -46,7 +48,9 @@ namespace cheat::feature
 		ConfigWidget("Only Hostile/Aggro", f_OnlyTargeted, "If enabled, kill aura will only affect monsters targeting/aggro towards you.");
 		ConfigWidget("Crash Attack Delay (ms)", f_AttackDelay, 1, 0, 1000, "Delay in ms before next crash damage.");
 		ConfigWidget("Crash Repeat Delay (ms)", f_RepeatDelay, 1, 100, 2000, "Delay in ms before crash damaging same monster.");
-    }
+	}
+}
+
 
     bool KillAura::NeedStatusDraw() const
 	{

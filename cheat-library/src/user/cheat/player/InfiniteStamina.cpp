@@ -18,18 +18,21 @@ namespace cheat::feature
 
     const FeatureGUIInfo& InfiniteStamina::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info { "Infinite Stamina", "Player", true };
+        static const FeatureGUIInfo info { "", "Player", false };
         return info;
     }
 
     void InfiniteStamina::DrawMain()
     {
+		if (ImGui::CollapsingHeader("Infinite Stamina", true))
+		{
 		ConfigWidget("Enabled", f_Enabled, "Enables infinite stamina option.");
 
 		ConfigWidget("Move Sync Packet Replacement", f_PacketReplacement,
 			"This mode prevents sending server packets with stamina cost actions,\n"
 			"e.g. swim, climb, sprint, etc.\n"
 			"NOTE: This is may be more safe than the standard method. More testing is needed.");
+		}
     }
 
     bool InfiniteStamina::NeedStatusDraw() const

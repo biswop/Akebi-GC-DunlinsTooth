@@ -40,12 +40,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AutoLoot::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Auto Loot", "World", true };
+        static const FeatureGUIInfo info{ "", "World", false };
         return info;
     }
 
     void AutoLoot::DrawMain()
     {
+		if (ImGui::CollapsingHeader("Auto Loot", true))
+		{
 		if (ImGui::BeginTable("AutoLootDrawTable", 2, ImGuiTableFlags_NoBordersInBody))
 		{
 			ImGui::TableNextRow();
@@ -111,6 +113,7 @@ namespace cheat::feature
 			ConfigWidget("Resources", f_PickupFilter_Resources, "Everything beside Animals and Drop Items (Plants, Books, etc).");
 	    }
     	ImGui::EndGroupPanel();
+	}
     }
 
     bool AutoLoot::NeedStatusDraw() const

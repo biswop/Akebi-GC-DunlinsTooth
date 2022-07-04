@@ -32,13 +32,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& NoCD::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Cooldown Effects", "Player", true };
+        static const FeatureGUIInfo info{ "", "Combat", false };
         return info;
     }
 
     void NoCD::DrawMain()
     {
-
+		if (ImGui::CollapsingHeader("Cooldown Effects", true))
+		{
 		ConfigWidget("Max Burst Energy", f_UtimateMaxEnergy,
 			"Removes energy requirement for elemental bursts.\n" \
 			"(Energy bubble may appear incomplete but still usable.)");
@@ -76,7 +77,8 @@ namespace cheat::feature
 				ImGui::TreePop();
 			}
 		}
-    }
+	}
+}
 
     bool NoCD::NeedStatusDraw() const
 {

@@ -27,12 +27,14 @@ namespace cheat::feature
 	}
 	const FeatureGUIInfo& CustomTeleports::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Custom Teleports", "Teleport", true };
+		static const FeatureGUIInfo info{ "", "Teleport", false };
 		return info;
 	}
 
 	void CustomTeleports::DrawMain()
 	{
+		if (ImGui::CollapsingHeader("Custom Teleports", true))
+		{
 		auto& entityManager = game::EntityManager::instance();
 		auto& MapTeleport = MapTeleport::GetInstance();
 		static std::string teleportName;
@@ -270,7 +272,7 @@ namespace cheat::feature
 			ImGui::TreePop();
 		}
 	}
-
+}
 	bool CustomTeleports::NeedStatusDraw() const
 	{
 		return f_Enabled;

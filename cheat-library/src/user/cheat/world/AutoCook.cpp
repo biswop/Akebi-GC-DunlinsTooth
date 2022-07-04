@@ -31,12 +31,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AutoCook::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "AutoCook", "World", true };
+        static const FeatureGUIInfo info{ "", "World", false };
         return info;
     }
 
     void AutoCook::DrawMain()
     {
+        if (ImGui::CollapsingHeader("Auto Cook", true))
+        {
         ConfigWidget(f_Enabled, "Fast Cooking if the recipe has fast cooking open. \n" \
                 "If fast cooking is closed, you in addition need to turn on Fast Proficiency.");
         ConfigWidget(f_FastProficiency, "Quickly prepare an unstudied recipe to the maximum possible.");
@@ -44,6 +46,7 @@ namespace cheat::feature
             "How much to cook at a time.\n" \
             "(For standard mode only.)");
         ConfigWidget("Quality Cooking", f_QualityField, 1, 1, 3, "Quality of the cook.");
+        }
     }
 
     bool AutoCook::NeedStatusDraw() const
