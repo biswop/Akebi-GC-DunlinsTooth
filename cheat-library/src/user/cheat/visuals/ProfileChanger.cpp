@@ -53,12 +53,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& ProfileChanger::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "CustomProfile", "Visuals", true };
+        static const FeatureGUIInfo info{ "", "Visuals", false };
         return info;
     }
 
     void ProfileChanger::DrawMain()
     {
+        if (ImGui::BeginGroupPanel("Custom Profile", true))
+        {
         ConfigWidget(f_Enabled, "Custom Profile.");
         ConfigWidget(f_UID, "Changes the uid visually.");
         ConfigWidget("Append \"UID:\" prefix on the water-mark", f_UIDWaterMarkPrefix);
@@ -80,6 +82,8 @@ namespace cheat::feature
         ConfigWidget(f_Card, "Changes the Card visually.\n" \
             "Note the size of the picture must be: 840x400.\n" \
             "Example path: C:\\Avatars.png");
+        }
+        ImGui::EndGroupPanel();
     }
 
     bool ProfileChanger::NeedStatusDraw() const

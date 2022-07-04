@@ -22,12 +22,14 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& AutoTreeFarm::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Auto Tree Farm", "World", true };
+		static const FeatureGUIInfo info{ "", "World", false };
 		return info;
 	}
 
 	void AutoTreeFarm::DrawMain()
 	{
+		if (ImGui::BeginGroupPanel("Auto Tree Farm", true))
+		{
 		ImGui::TextColored(ImColor(255, 165, 0, 255), "Note. This feature is not fully tested detection-wise.\n"
 			"Not recommended for main accounts or used with high values.");
 
@@ -43,6 +45,8 @@ namespace cheat::feature
 
 		ConfigWidget("Range (m)", m_Range, 0.1f, 1.0f, 15.0f);
 		ImGui::TextColored(ImColor(255, 165, 0, 255), "Range is softly limited to ~15m for safety purposes.");
+		}
+		ImGui::EndGroupPanel();
 	}
 
 	bool AutoTreeFarm::NeedStatusDraw() const

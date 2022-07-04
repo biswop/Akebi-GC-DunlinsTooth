@@ -25,12 +25,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AutoDestroy::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info { "Auto Destroy Objects", "World", true };
+        static const FeatureGUIInfo info { "", "World", false };
         return info;
     }
 
     void AutoDestroy::DrawMain()
     {
+		if (ImGui::BeginGroupPanel("Auto Destroy Objects", true))
+		{
 		ImGui::TextColored(ImColor(255, 165, 0, 255), "Note. This feature is not fully tested detection-wise.\n"
 			"Not recommended for main accounts or used with high values.");
 		
@@ -45,6 +47,8 @@ namespace cheat::feature
 		ImGui::TextColored(ImColor(255, 165, 0, 255), "Extremely risky!");
 		ImGui::Unindent();
 		ConfigWidget("Range (m)", f_Range, 0.1f, 1.0f, 15.0f);
+		}
+		ImGui::EndGroupPanel();
     }
 
     bool AutoDestroy::NeedStatusDraw() const

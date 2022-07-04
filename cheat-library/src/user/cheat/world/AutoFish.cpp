@@ -27,12 +27,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AutoFish::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Fishing", "World", true };
+        static const FeatureGUIInfo info{ "", "World", false };
         return info;
     }
 
     void AutoFish::DrawMain()
     {
+        if (ImGui::BeginGroupPanel("Fishing", true))
+        {
         ConfigWidget("Enabled", f_Enabled, "Automatically catch fish.");
         ConfigWidget("Delay (ms)", f_DelayBeforeCatch, 100, 500, 4000, "Fish will be caught after this delay (in ms).");
 
@@ -40,6 +42,8 @@ namespace cheat::feature
 
         ConfigWidget(f_AutoRecastRod, "If enabled, rod will recasted. Without visualization.");
         ConfigWidget("Delay (ms)", f_DelayBeforeRecast, 10, 100, 4000, "Rod will be recast after this delay (in ms).");
+        }
+        ImGui::EndGroupPanel();
     }
 
     bool AutoFish::NeedStatusDraw() const

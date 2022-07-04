@@ -15,13 +15,15 @@ namespace cheat::feature
     }
 	const FeatureGUIInfo& VacuumLoot::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "", "World", true };
+		static const FeatureGUIInfo info{ "Misc", "World", true };
 		return info;
 	}
 
     void VacuumLoot::DrawMain()
     {
+
         ConfigWidget("Vacuum Loot", f_Enabled, "Vacuum Loot drops");
+
     }
 
 	bool VacuumLoot::NeedStatusDraw() const

@@ -30,12 +30,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& MobVacuum::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Mob Vacuum", "World", true };
+        static const FeatureGUIInfo info{ "", "World", false };
         return info;
     }
 
     void MobVacuum::DrawMain()
     {
+        if (ImGui::BeginGroupPanel("Mob Vacuum", true))
+        {
         ConfigWidget("Enabled", f_Enabled, "Enables mob vacuum.\n" \
             "Mobs within the specified radius will move\nto a specified distance in front of the player.");
 
@@ -66,6 +68,8 @@ namespace cheat::feature
         ConfigWidget("Speed", f_Speed, 0.1f, 1.0f, 15.0f, "If 'Instant Vacuum' is not checked, mob will be vacuumed at the specified speed.");
         ConfigWidget("Radius (m)", f_Radius, 0.1f, 5.0f, 150.0f, "Radius of vacuum.");
         ConfigWidget("Distance (m)", f_Distance, 0.1f, 0.5f, 10.0f, "Distance between the player and the monster.");
+        }
+        ImGui::EndGroupPanel();
     }
 
     bool MobVacuum::NeedStatusDraw() const

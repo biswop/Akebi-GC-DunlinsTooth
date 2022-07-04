@@ -27,12 +27,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& RapidFire::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Attack Effects", "Player", true };
+        static const FeatureGUIInfo info{ "", "Combat", false };
         return info;
     }
 
     void RapidFire::DrawMain()
     {
+		if (ImGui::BeginGroupPanel("Attack Effects", true))
+		{
 		ConfigWidget("Enabled", f_Enabled, "Enables attack multipliers. Need to choose a mode to work.");
 		ImGui::SameLine();
 		ImGui::TextColored(ImColor(255, 165, 0, 255), "Choose any or both modes below.");
@@ -77,6 +79,8 @@ namespace cheat::feature
 		ImGui::Indent();
 		ConfigWidget("Radius (m)", f_MultiTargetRadius, 0.1f, 5.0f, 50.0f, "Radius to check for valid targets.");
 		ImGui::Unindent();
+		}
+		ImGui::EndGroupPanel();
     }
 
     bool RapidFire::NeedStatusDraw() const

@@ -20,14 +20,18 @@ namespace cheat::feature
 
     const FeatureGUIInfo& Browser::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Browser", "Visuals", false };
+        static const FeatureGUIInfo info{ "Misc", "Visuals", true };
         return info;
     }
 
     void Browser::DrawMain()
     {
+        if (ImGui::BeginGroupPanel("Browser", true))
+        {
         ConfigWidget(f_Enabled, "Create in-game Browser");
         ImGui::InputText("URL", &f_URL);
+        }
+        ImGui::EndGroupPanel();
     }
 
     bool Browser::NeedStatusDraw() const

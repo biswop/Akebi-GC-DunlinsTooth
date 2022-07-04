@@ -24,12 +24,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& TextureChanger::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "TextureChanger", "Visuals", true };
+        static const FeatureGUIInfo info{ "", "Visuals", false };
         return info;
     }
 
     void TextureChanger::DrawMain()
     {
+        if (ImGui::BeginGroupPanel("Texture Changer", true))
+        {
         ConfigWidget(f_Enabled, "Texture Changer.");
         ImGui::Text("Active Hero: %s", ActiveHero.c_str());
  
@@ -44,6 +46,8 @@ namespace cheat::feature
 
         if (ImGui::Button("Apply"))
             ApplyTexture = true;
+        }
+        ImGui::EndGroupPanel();
     }
 
     bool TextureChanger::NeedStatusDraw() const

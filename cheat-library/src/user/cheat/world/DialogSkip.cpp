@@ -25,12 +25,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& DialogSkip::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Auto Talk", "World", true };
+        static const FeatureGUIInfo info{ "", "World", false };
         return info;
     }
 
     void DialogSkip::DrawMain()
     {
+        if (ImGui::BeginGroupPanel("Auto Talk", true))
+        {
         ConfigWidget("Enabled", f_Enabled, "Automatically continue the dialog.");
         ConfigWidget("Auto-select Dialog", f_AutoSelectDialog, "Automatically select dialog choices.");
         if (f_AutoSelectDialog)
@@ -45,6 +47,8 @@ namespace cheat::feature
             ConfigWidget(f_TimeSpeedup, 0.1f, 2.0f, 50.0f, "Time Speedup Multipler \nHigher Values will lead to sync issues with servers \nand is not recommended for Laggy Internet connections.");
         }
         ConfigWidget("Skip Cutscenes", f_CutsceneUSM, "Automatically skips game movies.");
+        }
+        ImGui::EndGroupPanel();
     }
 
     bool DialogSkip::NeedStatusDraw() const

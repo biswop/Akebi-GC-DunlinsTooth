@@ -33,12 +33,14 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& MapTeleport::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Map Teleport", "Teleport", true };
+		static const FeatureGUIInfo info{ "", "Teleport", false };
 		return info;
 	}
 
 	void MapTeleport::DrawMain()
 	{
+		if (ImGui::BeginGroupPanel("Map Teleport", true))
+		{
 		ConfigWidget("Enabled",
 			f_Enabled,
 			"Enable teleport-to-mark functionality.\n" \
@@ -63,7 +65,8 @@ namespace cheat::feature
 		if (!f_Enabled)
 			ImGui::EndDisabled();
 	}
-
+	ImGui::EndGroupPanel();
+}
 	MapTeleport& MapTeleport::GetInstance()
 	{
 		static MapTeleport instance;
