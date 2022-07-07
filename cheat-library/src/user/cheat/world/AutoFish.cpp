@@ -36,12 +36,13 @@ namespace cheat::feature
         if (ImGui::CollapsingHeader("Fishing", true))
         {
         ConfigWidget("Enabled", f_Enabled, "Automatically catch fish.");
-        ConfigWidget("Delay (ms)", f_DelayBeforeCatch, 100, 500, 4000, "Fish will be caught after this delay (in ms).");
+        ConfigWidget("Catch Delay (ms)", f_DelayBeforeCatch, 100, 500, 4000, "Fish will be caught after this delay (in ms).");
 
         ImGui::Spacing();
 
         ConfigWidget(f_AutoRecastRod, "If enabled, rod will recasted. Without visualization.");
         ConfigWidget("Delay (ms)", f_DelayBeforeRecast, 10, 100, 4000, "Rod will be recast after this delay (in ms).");
+        ConfigWidget("Recast Delay (ms)", f_DelayBeforeRecast, 10, 100, 4000, "Rod will be recast after this delay (in ms).");
         }
     }
 

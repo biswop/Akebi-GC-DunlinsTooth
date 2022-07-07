@@ -172,6 +172,30 @@ namespace util
 		return tokens;
 	}
 
+	std::string SplitWords(const std::string& value)
+	{
+		std::stringstream outStream;
+		std::stringstream inStream(value);
+
+		char ch;
+		inStream >> ch;
+		outStream << ch;
+		while (inStream >> ch)
+		{
+			if (isupper(ch))
+				outStream << " ";
+			outStream << ch;
+		}
+		return outStream.str();
+	}
+
+	std::string MakeCapital(std::string value)
+	{
+		if (islower(value[0]))
+			value[0] = toupper(value[0]);
+		return value;
+	}
+
 	static const std::string base64_chars =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		"abcdefghijklmnopqrstuvwxyz"
@@ -270,6 +294,18 @@ namespace util
 			LOG_LAST_ERROR("Failed to get timezone.");
 
 		return static_cast<int64_t>(timezoneInfo.Bias) * 60;
+	}
+
+	void OpenConsole()
+	{
+		AllocConsole();
+		freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
+		freopen_s((FILE**)stderr, "CONOUT$", "w", stderr);
+
+		auto consoleWindow = GetConsoleWindow();
+		SetForegroundWindow(consoleWindow);
+		ShowWindow(consoleWindow, SW_RESTORE);
+		ShowWindow(consoleWindow, SW_SHOW);
 	}
 
 	void OpenURL(const char* url)
