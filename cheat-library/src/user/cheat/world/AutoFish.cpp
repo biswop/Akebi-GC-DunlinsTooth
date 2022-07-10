@@ -36,7 +36,7 @@ namespace cheat::feature
         if (ImGui::CollapsingHeader("Fishing", true))
         {
         ConfigWidget("Enabled", f_Enabled, "Automatically catch fish.");
-        ConfigWidget("Catch Delay (ms)", f_DelayBeforeCatch, 100, 500, 4000, "Fish will be caught after this delay (in ms).");
+        ConfigWidget("Delay (ms)", f_DelayBeforeCatch, 100, 500, 4000, "Fish will be caught after this delay (in ms).");
 
         ImGui::Spacing();
 

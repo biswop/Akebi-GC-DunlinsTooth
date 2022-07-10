@@ -31,22 +31,19 @@ namespace cheat::feature
     static void ProfileEditPage(app::MonoFriendInformationDialog* __this, app::Sprite* value, MethodInfo* method);
 
     ProfileChanger::ProfileChanger() : Feature(),
-        NF(f_Enabled, "Custom Profile", "Visuals::ProfileChanger", false),
-        NF(f_UID, "UID", "Visuals::ProfileChanger", false),
-        NF(f_UIDWaterMarkPrefix, "UIDWaterMarkPrefix", "Visuals::ProfileChanger", false),
-        NF(f_UIDsize, "UID Size", "Visuals::ProfileChanger", 14),
-        NF(f_UIDpos_x, "UID Pos X", "Visuals::ProfileChanger", static_cast<float>(app::Screen_get_width(nullptr)* 0.96875)),
-        NF(f_UIDpos_y, "UID Pos Y", "Visuals::ProfileChanger", 0),
-        NF(f_NickName, "NickName", "Visuals::ProfileChanger", false),
-        NF(f_Level, "Level", "Visuals::ProfileChanger", false),
-        NF(f_Exp, "Exp", "Visuals::ProfileChanger", false),
-        NF(f_CurExp, "CurExp", "Visuals::ProfileChanger", 1),
-        NF(f_MaxExp, "MaxExp", "Visuals::ProfileChanger", 1),
-        NF(f_ExpBar, "ExpBar", "Visuals::ProfileChanger", false),
-        NF(f_ExpBarValue, "ExpBarValue", "Visuals::ProfileChanger", 20.0f),
-        NF(f_WorldLevel, "WorldLevel", "Visuals::ProfileChanger", false),
-        NF(f_Avatar, "AvatarImage", "Visuals::ProfileChanger", false),
-        NF(f_Card, "CardImage", "Visuals::ProfileChanger", false),
+        NF(f_Enabled, "Custom Profile", "ProfileChanger", false),
+        NF(f_UID, "UID", "ProfileChanger", false),
+        NF(f_UIDWaterMarkPrefix, "UIDWaterMarkPrefix", "ProfileChanger", false),
+        NF(f_NickName, "NickName", "ProfileChanger", false),
+        NF(f_Level, "Level", "ProfileChanger", false),
+        NF(f_Exp, "Exp", "ProfileChanger", false),
+        NF(f_CurExp, "CurExp", "ProfileChanger", 1),
+        NF(f_MaxExp, "MaxExp", "ProfileChanger", 1),
+        NF(f_ExpBar, "ExpBar", "ProfileChanger", false),
+        NF(f_ExpBarValue, "ExpBarValue", "ProfileChanger", 20.0f),
+        NF(f_WorldLevel, "WorldLevel", "ProfileChanger", false),
+        NF(f_Avatar, "AvatarImage", "ProfileChanger", false),
+        NF(f_Card, "CardImage", "ProfileChanger", false),
         toBeUpdate(), nextUpdate(0)
     {
         HookManager::install(app::ProfilePage, ProfilePage);
@@ -67,9 +64,6 @@ namespace cheat::feature
         ConfigWidget("Custom Profile.", f_Enabled, "Custom Profile.");
         ConfigWidget(f_UID, "Changes the uid visually.");
         ConfigWidget("Append \"UID:\" prefix on the water-mark", f_UIDWaterMarkPrefix);
-        ConfigWidget("UID size", f_UIDsize, 0.1, 1, 500.0, "Set UID size");
-        ConfigWidget("UID Pos X", f_UIDpos_x, 1.f, 1.f, static_cast<float>(app::Screen_get_width(nullptr)), "Set UID position X");
-        ConfigWidget("UID Pos y", f_UIDpos_y, 1.f, 0, static_cast<float>(app::Screen_get_height(nullptr)), "Set UID position y");
         ConfigWidget(f_NickName, "Changes the nickname visually.");
         ConfigWidget(f_Level, "Changes the level visually.");
         ConfigWidget(f_Exp, "Changes the exp visually.");
@@ -125,18 +119,6 @@ namespace cheat::feature
 
             if (Components::WaterMark != nullptr)
                 app::Text_set_text(reinterpret_cast<app::Text*>(Components::WaterMark), string_to_il2cppi(f_UID.value().value.empty() ? "" : std::string((f_UIDWaterMarkPrefix ? "UID: " : "") + f_UID.value().value)), nullptr);
-
-            auto transformWatermark = app::GameObject_get_transform(GameObject::WaterMark, nullptr);
-            if (transformWatermark)
-            {
-                app::Vector3 uidPos = { f_UIDpos_x, f_UIDpos_y, 0 };
-                app::Text_set_alignment(reinterpret_cast<app::Text*>(Components::WaterMark), app::TextAnchor__Enum::LowerRight, nullptr);
-                app::Text_set_horizontalOverflow(reinterpret_cast<app::Text*>(Components::WaterMark), app::HorizontalWrapMode__Enum::Overflow, nullptr);
-                app::Text_set_verticalOverflow(reinterpret_cast<app::Text*>(Components::WaterMark), app::VerticalWrapMode__Enum::Overflow, nullptr);
-                app::Text_set_resizeTextForBestFit(reinterpret_cast<app::Text*>(Components::WaterMark), false, nullptr);
-                app::Text_set_fontSize(reinterpret_cast<app::Text*>(Components::WaterMark), f_UIDsize, nullptr);
-                app::Transform_set_position(transformWatermark, uidPos, nullptr);
-            }
         }
            
         nextUpdate = currentTime + (int)f_DelayUpdate;
