@@ -27,7 +27,7 @@ namespace cheat::feature
 
 	void VacuumLoot::DrawMain()
 	{
-		if (ImGui::BeginGroupPanel("Vacuum Loot", false))
+		if (ImGui::CollapsingHeader("Vacuum Loot"))
 		{
 			ConfigWidget("Enabled", f_Enabled, "Vacuum Loot drops"); ImGui::SameLine(); ImGui::SetNextItemWidth(100.0f);
 			ConfigWidget("Delay Time (ms)", f_DelayTime, 1, 0, 1000, "Delay (in ms) between loot vacuum.");
@@ -45,7 +45,6 @@ namespace cheat::feature
 				ImGui::TreePop();
 			}
 		}
-		ImGui::EndGroupPanel();
 	}
 
 	bool VacuumLoot::NeedStatusDraw() const

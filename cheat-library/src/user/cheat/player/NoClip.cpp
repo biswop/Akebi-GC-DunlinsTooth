@@ -30,35 +30,38 @@ namespace cheat::feature
 
     const FeatureGUIInfo& NoClip::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "No-Clip", "Player", true };
+        static const FeatureGUIInfo info{ "", "Player", true };
         return info;
     }
 
     void NoClip::DrawMain()
     {
-		ConfigWidget("Enabled", f_Enabled, "Enables no-clip (fast speed + no collision).\n" \
-            "To move, use WASD, Space (go up), and Shift (go down).");
+		if (ImGui::CollapsingHeader("No-Clip"))
+		{
+			ConfigWidget("Enabled", f_Enabled, "Enables no-clip (fast speed + no collision).\n" \
+				"To move, use WASD, Space (go up), and Shift (go down).");
 
-		ConfigWidget("No Animation", f_NoAnimation, "Disables player animations.");
+			ConfigWidget("No Animation", f_NoAnimation, "Disables player animations.");
 
-		ConfigWidget("Speed", f_Speed, 0.1f, 2.0f, 100.0f,
-			"No-clip move speed.\n" \
-			"Not recommended setting above 5.0.");
-
-		ConfigWidget("Camera-relative movement", f_CameraRelative,
-			"Move relative to camera view instead of avatar view/direction.");
-
-		ConfigWidget("Alternate No-clip", f_AltSpeedEnabled,
-			"Allows usage of alternate speed when holding down LeftCtrl key.\n" \
-			"Useful if you want to temporarily go faster/slower than the no-clip speed setting.");
-			
-		if (f_AltSpeedEnabled) {
-			ConfigWidget("Alt Speed", f_AltSpeed, 0.1f, 2.0f, 100.0f,
-				"Alternate no-clip move speed.\n" \
+			ConfigWidget("Speed", f_Speed, 0.1f, 2.0f, 100.0f,
+				"No-clip move speed.\n" \
 				"Not recommended setting above 5.0.");
-		
-		ConfigWidget("Velocity mode", f_VelocityMode,"Use velocity instead of position to move.");
-		ConfigWidget("Freeflight mode", f_FreeflightMode,"Don't remove collisions");
+
+			ConfigWidget("Camera-relative movement", f_CameraRelative,
+				"Move relative to camera view instead of avatar view/direction.");
+
+			ConfigWidget("Alternate No-clip", f_AltSpeedEnabled,
+				"Allows usage of alternate speed when holding down LeftCtrl key.\n" \
+				"Useful if you want to temporarily go faster/slower than the no-clip speed setting.");
+
+			if (f_AltSpeedEnabled) {
+				ConfigWidget("Alt Speed", f_AltSpeed, 0.1f, 2.0f, 100.0f,
+					"Alternate no-clip move speed.\n" \
+					"Not recommended setting above 5.0.");
+
+				ConfigWidget("Velocity mode", f_VelocityMode, "Use velocity instead of position to move.");
+				ConfigWidget("Freeflight mode", f_FreeflightMode, "Don't remove collisions");
+			}
 		}
     }
 
