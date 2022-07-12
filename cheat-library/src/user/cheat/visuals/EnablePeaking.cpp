@@ -15,7 +15,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& EnablePeaking::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "EnablePeaking", "Visuals", false };
+        static const FeatureGUIInfo info{ "Misc", "Visuals", true };
         return info;
     }
 
