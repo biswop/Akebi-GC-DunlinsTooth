@@ -31,7 +31,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AutoCook::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "AutoCook", "World", true };
+        static const FeatureGUIInfo info{ "Auto Cook", "World", true };
         return info;
     }
 

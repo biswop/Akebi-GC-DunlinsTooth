@@ -27,7 +27,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& RapidFire::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Attack Effects", "Player", true };
+        static const FeatureGUIInfo info{ "Attack Effects", "Combat", true };
         return info;
     }
 

@@ -28,7 +28,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& KillAura::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Kill Aura", "World", true };
+        static const FeatureGUIInfo info{ "Kill Aura", "Combat", true };
         return info;
     }
 

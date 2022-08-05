@@ -40,7 +40,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& ProtectionBypass::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info { "", "Settings", false };
+        static const FeatureGUIInfo info { "Settings", "Settings", true };
         return info;
     }
 

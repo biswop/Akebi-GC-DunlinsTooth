@@ -113,17 +113,15 @@ namespace cheat
 	void CheatManagerBase::DrawMenuSection(const std::string& sectionName, const std::vector<Feature*>& features) const
 	{
 		if (!sectionName.empty())
-			ImGui::BeginGroupPanel(sectionName.c_str());
-
-		for (auto& feature : features)
-		{
-			ImGui::PushID(&feature);
-			feature->DrawMain();
-			ImGui::PopID();
-		}
-
-		if (!sectionName.empty())
-			ImGui::EndGroupPanel();
+			if (ImGui::CollapsingHeader(sectionName.c_str()))
+			{
+				for (auto& feature : features)
+				{
+					ImGui::PushID(&feature);
+					feature->DrawMain();
+					ImGui::PopID();
+				}
+			}
 	}
 
 	void CheatManagerBase::DrawProfileGlobalActivities()

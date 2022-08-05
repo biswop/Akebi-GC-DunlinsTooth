@@ -231,7 +231,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AnimationChanger::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "AnimationChanger", "Visuals", false };
+        static const FeatureGUIInfo info{ "Misc", "Visuals", true };
         return info;
     }
 

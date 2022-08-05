@@ -27,7 +27,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AutoFish::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Fishing", "World", true };
+        static const FeatureGUIInfo info{ "Auto Fishing", "World", true };
         return info;
     }
 

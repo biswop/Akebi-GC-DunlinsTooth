@@ -40,7 +40,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& Debug::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "DebugInfo", "Debug", false };
+        static const FeatureGUIInfo info{ "Debug Info", "Debug", true };
         return info;
     }
 

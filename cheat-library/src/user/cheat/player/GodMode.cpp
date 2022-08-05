@@ -18,7 +18,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& GodMode::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "", "Player", false };
+        static const FeatureGUIInfo info{ "God Mode", "Player", true };
         return info;
     }
 

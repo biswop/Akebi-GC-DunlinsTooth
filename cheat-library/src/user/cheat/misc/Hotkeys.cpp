@@ -10,7 +10,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& Hotkeys::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "", "Hotkeys", false };
+        static const FeatureGUIInfo info{ "Hotkeys", "Hotkeys", true };
         return info;
     }
 
@@ -57,14 +57,13 @@ namespace cheat::feature
 
         for (auto& fields : multiLineSections)
         {
-	        if (ImGui::BeginGroupPanel((*fields)[0]->section().c_str(), true))
+	        if (ImGui::CollapsingHeader((*fields)[0]->section().c_str(), true))
 	        {
 		        for (auto& field : *fields)
 		        {
                     ConfigWidget(*field, nullptr, true);
 		        }
 	        }
-            ImGui::EndGroupPanel();
         }
 
         ImGui::EndChild();

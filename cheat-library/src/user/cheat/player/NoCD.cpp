@@ -33,7 +33,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& NoCD::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Cooldown Effects", "Player", true };
+        static const FeatureGUIInfo info{ "Cooldown Effects", "Combat", true };
         return info;
     }
 
